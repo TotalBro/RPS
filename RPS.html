@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+  <body>
+      <script>
+          let playerScore = 0;
+          let computerScore = 0;
+
+          function game () {
+            for (let i = 0; i<5; i++) {
+                playRound(prompt('Your move?'),computerPlay());
+            }
+            if (playerScore < computerScore) {
+                console.log('You lost ' + playerScore + ' to ' + computerScore + '.');
+            }
+            else if (computerScore < playerScore) {
+                console.log('You won ' + playerScore + 'to ' + computerScore + '.');
+            }
+            else {
+                console.log('The game was a draw, ' + playerScore + ' to ' + computerScore + '.');
+            }
+          }
+
+          function playRound (playerSelection, computerSelection) {
+              playerSelection = playerSelection.toLowerCase();
+              switch (playerSelection) {
+                  case 'rock':
+                    switch (computerSelection) {
+                        case 'rock':
+                          console.log("It's a draw! Both picked rock.");
+                          break;
+                        case 'paper':
+                          console.log("You Lose! Paper covers rock.");
+                          computerScore++;
+                          break;
+                        case 'scissors':
+                          console.log("You Win! Rock breaks scissors.");
+                          playerScore++;
+                          break;  
+                    }
+                    break;
+                  case 'paper':
+                  switch (computerSelection) {
+                        case 'paper':
+                          console.log("It's a draw! Both picked paper.");                          
+                          break;
+                        case 'scissors':
+                          console.log("You Lose! Scissors cuts paper.");
+                          computerScore++;
+                          break;
+                        case 'rock':
+                          console.log("You Win! Paper covers rock.");
+                          playerScore++;
+                          break;  
+                    }                  
+                    break;
+                  case 'scissors':
+                  switch (computerSelection) {
+                        case 'scissors':
+                          console.log("It's a draw! Both picked scissors.");
+                          break;
+                        case 'rock':
+                          console.log("You Lose! Rock breaks scissors.");
+                          computerScore++;                          
+                          break;
+                        case 'paper':
+                          playerScore++;
+                          return "You Win! Scissors cuts paper.";
+                          break;  
+                    }                  
+                    break;   
+                  default: 
+                    return 'You need to pick rock, paper, or scissors, but your selection was ' + playerSelection;
+              }
+
+          }
+          function computerPlay () {
+              switch (Math.floor(Math.random()*3)) {
+                  case 0:
+                    return 'rock';
+                    break;
+                  case 1:
+                    return 'paper';
+                    break;
+                  case 2:
+                    return 'scissors';
+                    break;
+                  default:
+                    return 'Something broke when computer tried to determine move!';      
+              }
+          }
+      </script>
+  </body>
+</html>
