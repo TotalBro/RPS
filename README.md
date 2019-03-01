@@ -1,0 +1,1 @@
+A basic project for front-end interaction through a rock-paper-scissors game.
