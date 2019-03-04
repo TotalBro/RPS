@@ -1,47 +1,21 @@
 <!DOCTYPE html>
   <body>
-    <div class = 'gameContainer'></div>
-    <div class = 'results' id = 'results'></div>
       <script>
           let playerScore = 0;
           let computerScore = 0;
-          
-          let rockButton = document.createElement('button');
-                           rockButton.innerHTML = 'Rock';
-                           rockButton.setAttribute('id','rock');
-          let scissorsButton = document.createElement('button');
-                               scissorsButton.innerHTML = 'Scissors';
-                               scissorsButton.setAttribute('id','scissors');
-          let paperButton = document.createElement('button');
-                            paperButton.innerHTML = 'Paper';
-                            paperButton.setAttribute('id','paper');
 
-          document.querySelector('.gameContainer').appendChild(rockButton);
-          document.querySelector('.gameContainer').appendChild(scissorsButton);
-          document.querySelector('.gameContainer').appendChild(paperButton);
-
-          let buttons = document.querySelectorAll('button');
-          buttons.forEach((button) => {
-            button.addEventListener('click', (e) => {
-              if (playerScore > 4 || computerScore > 4) {
-                document.getElementById('results').innerHTML = game(playerScore, computerScore);
-              }
-              else {
-                document.getElementById('results').innerHTML = playRound(button.id, computerPlay());
-              }
-            });
-          });
-
-
-          function game(playerScore, ComputerScore) {
+          function game () {
+            for (let i = 0; i<5; i++) {
+                playRound(prompt('Your move?'),computerPlay());
+            }
             if (playerScore < computerScore) {
-                return 'You lost ' + playerScore + ' to ' + computerScore + '.';
+                console.log('You lost ' + playerScore + ' to ' + computerScore + '.');
             }
             else if (computerScore < playerScore) {
-                return 'You won ' + playerScore + ' to ' + computerScore + '.';
+                console.log('You won ' + playerScore + 'to ' + computerScore + '.');
             }
             else {
-                return 'The game was a draw, ' + playerScore + ' to ' + computerScore + '.';
+                console.log('The game was a draw, ' + playerScore + ' to ' + computerScore + '.');
             }
           }
 
@@ -51,41 +25,41 @@
                   case 'rock':
                     switch (computerSelection) {
                         case 'rock':
-                          return "It's a draw! Both picked rock.";
+                          console.log("It's a draw! Both picked rock.");
                           break;
                         case 'paper':
+                          console.log("You Lose! Paper covers rock.");
                           computerScore++;
-                          return "You Lose! Paper covers rock.";
                           break;
                         case 'scissors':
+                          console.log("You Win! Rock breaks scissors.");
                           playerScore++;
-                          return "You Win! Rock breaks scissors.";
                           break;  
                     }
                     break;
                   case 'paper':
                   switch (computerSelection) {
                         case 'paper':
-                          return "It's a draw! Both picked paper.";                          
+                          console.log("It's a draw! Both picked paper.");                          
                           break;
                         case 'scissors':
+                          console.log("You Lose! Scissors cuts paper.");
                           computerScore++;
-                          return "You Lose! Scissors cuts paper.";
                           break;
                         case 'rock':
+                          console.log("You Win! Paper covers rock.");
                           playerScore++;
-                          return "You Win! Paper covers rock.";
                           break;  
                     }                  
                     break;
                   case 'scissors':
                   switch (computerSelection) {
                         case 'scissors':
-                          return "It's a draw! Both picked scissors.";
+                          console.log("It's a draw! Both picked scissors.");
                           break;
                         case 'rock':
-                          computerScore++;  
-                          return "You Lose! Rock breaks scissors.";                        
+                          console.log("You Lose! Rock breaks scissors.");
+                          computerScore++;                          
                           break;
                         case 'paper':
                           playerScore++;
